@@ -1,5 +1,4 @@
 package com.example.demo.security;
-
 public class SecurityConstant {
 	public static final String SIGN_UP_URLS = "/api/users/**";
 	public static final String SECRET = "SecretKeyToGenJWTs";
