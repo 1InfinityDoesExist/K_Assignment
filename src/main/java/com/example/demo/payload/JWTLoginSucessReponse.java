@@ -1,7 +1,6 @@
 package com.example.demo.payload;
 
 public class JWTLoginSucessReponse {
-
 	private boolean success;
 	private String token;
 

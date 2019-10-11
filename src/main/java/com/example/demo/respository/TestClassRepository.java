@@ -17,4 +17,5 @@ public interface TestClassRepository extends CrudRepository<TestClass, Long> {
 	@Query("Select TestClass from #{#entityName} TestClass ")
 	public List<TestClass> getAllTestClass();
 
+	
 }

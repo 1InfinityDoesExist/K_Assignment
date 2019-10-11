@@ -14,7 +14,6 @@ public class FoodDeliveryZomatoAPI {
 	@Bean
 	BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
-
 	}
 
 	public static void main(String[] args) {

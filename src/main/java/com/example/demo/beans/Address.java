@@ -103,7 +103,6 @@ public class Address implements Serializable {
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

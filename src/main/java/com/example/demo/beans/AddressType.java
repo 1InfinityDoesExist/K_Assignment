@@ -19,7 +19,6 @@ import org.hibernate.usertype.UserType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AddressType implements UserType {
-
 	@Override
 	public int[] sqlTypes() {
 		// TODO Auto-generated method stub

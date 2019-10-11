@@ -45,7 +45,7 @@ public class TestClassRestController {
 		TestClass testClassToDB = testClassService.createTestClass(testClass);
 		return new ResponseEntity<TestClass>(testClassToDB, HttpStatus.CREATED);
 	}
-
+	
 	@GetMapping(path = "/get/{id}")
 	public ResponseEntity<?> getTestClassById(@PathVariable(value = "id") Long id) {
 		TestClass testClassFromDB = testClassService.getTestClassById(id);
@@ -64,7 +64,7 @@ public class TestClassRestController {
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 
 	}
-
+	
 	@PatchMapping(path = "update/{id}")
 	public ResponseEntity<?> updateTestClassByID(@Valid @RequestBody String testClass,
 			@PathVariable(value = "id") Long id) throws JsonParseException, JsonMappingException, IOException {

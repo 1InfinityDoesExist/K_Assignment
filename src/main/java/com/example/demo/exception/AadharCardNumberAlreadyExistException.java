@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class AadharCardNumberAlreadyExistException extends RuntimeException {
-
 	public AadharCardNumberAlreadyExistException(String message) {
 		super(message);
 	}

@@ -8,6 +8,7 @@ public class UserNameAlreadyExistResponse {
 		super();
 		this.username = username;
 	}
+	
 
 	public String getUsername() {
 		return username;

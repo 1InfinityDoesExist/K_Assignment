@@ -55,12 +55,10 @@ public class UserController {
 		}
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = SecurityConstant.TOKEN_PREFIX + jwtTokenProvider.generateToken(authentication);
 		return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
-		// return new ResponseEntity<String>("SuccessFull Created JwtToken",
-		// HttpStatus.OK);
+		
 	}
 
 	@PostMapping(path = "/register")

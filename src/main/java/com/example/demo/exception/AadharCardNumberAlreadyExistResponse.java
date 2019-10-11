@@ -7,6 +7,7 @@ public class AadharCardNumberAlreadyExistResponse {
 		super();
 		this.aadharCardNumber = aadharCardNumber;
 	}
+	
 
 	public String getAadharCardNumber() {
 		return aadharCardNumber;

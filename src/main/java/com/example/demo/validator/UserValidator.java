@@ -17,7 +17,7 @@ public class UserValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		// TODO Auto-generated method stub
+	
 		User user = (User) target;
 		if (user.getPassword().length() < 5) {
 			errors.rejectValue("password", "Length", "Password must be 6 Character long");

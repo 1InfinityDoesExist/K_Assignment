@@ -35,7 +35,6 @@ public class TestClass implements Serializable {
 	@Column(name = "id")
 	@ApiModelProperty(notes = "Primary key")
 	private Long id;
-
 	@Column(name = "aadhar_card_number", updatable = false)
 	@NotBlank(message = "Aadhar Card Number Field Cannon't be Blank")
 	private String aadharCardNumber;

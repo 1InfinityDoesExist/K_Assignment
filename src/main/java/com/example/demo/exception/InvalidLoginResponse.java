@@ -4,6 +4,7 @@ public class InvalidLoginResponse {
 	private String username;
 	private String password;
 
+	
 	public InvalidLoginResponse() {
 		super();
 		this.username = "Invalid Username";
