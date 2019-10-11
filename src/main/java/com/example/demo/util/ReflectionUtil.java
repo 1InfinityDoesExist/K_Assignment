@@ -1,4 +1,4 @@
-package com.example.demoutil;
+package com.example.demo.util;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -19,7 +19,7 @@ public class ReflectionUtil {
 	private static HashMap<String, String> objectBeanMap = new HashMap<String, String>() {
 		{
 			put("TestClass", "com.example.demo.beans.TestClass");
-
+			put("Address", "com.example.demo.beans.Address");
 		}
 	};
 

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.beans.TestClass;
 import com.example.demo.service.MapErrorToFields;
 import com.example.demo.service.TestClassService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 @RestController
 @CrossOrigin
@@ -59,6 +63,13 @@ public class TestClassRestController {
 		String response = testClassService.deleteTestClassByID(id);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 
+	}
+
+	@PatchMapping(path = "update/{id}")
+	public ResponseEntity<?> updateTestClassByID(@Valid @RequestBody String testClass,
+			@PathVariable(value = "id") Long id) throws JsonParseException, JsonMappingException, IOException {
+		TestClass testClassFromDB = testClassService.updateTestClassById(id, testClass);
+		return new ResponseEntity<TestClass>(testClassFromDB, HttpStatus.OK);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,11 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.Api;
@@ -20,6 +26,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity(name = "TestClass")
 @Table(name = "test_class", uniqueConstraints = { @UniqueConstraint(columnNames = { "aadhar_card_number" }) })
+@EntityListeners(AuditingEntityListener.class)
+@TypeDefs({ @TypeDef(name = "AddressType", typeClass = AddressType.class) })
 @Api(value = "TestCase", description = "This is just a TestClass Classs")
 public class TestClass implements Serializable {
 	@Id
@@ -46,6 +54,12 @@ public class TestClass implements Serializable {
 	@Email(message = "You Must Enter A Valid Email ID")
 	private String email;
 
+	@Column(name = "address", columnDefinition = "jsonb", insertable = true, nullable = false, updatable = true, unique = false)
+	@Type(type = "AddressType")
+	// @NotBlank(message = "Address of the Customer")
+	@ApiModelProperty(notes = "Address of the Customer")
+	private Address address;
+
 	public TestClass() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -53,7 +67,7 @@ public class TestClass implements Serializable {
 
 	public TestClass(Long id, @NotBlank(message = "Aadhar Card Number Field Cannon't be Blank") String aadharCardNumber,
 			Date dob, String firstName, String lastName,
-			@Email(message = "You Must Enter A Valid Email ID") String email) {
+			@Email(message = "You Must Enter A Valid Email ID") String email, Address address) {
 		super();
 		this.id = id;
 		this.aadharCardNumber = aadharCardNumber;
@@ -61,6 +75,7 @@ public class TestClass implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -111,11 +126,20 @@ public class TestClass implements Serializable {
 		this.email = email;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((aadharCardNumber == null) ? 0 : aadharCardNumber.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
@@ -137,6 +161,11 @@ public class TestClass implements Serializable {
 			if (other.aadharCardNumber != null)
 				return false;
 		} else if (!aadharCardNumber.equals(other.aadharCardNumber))
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
 			return false;
 		if (dob == null) {
 			if (other.dob != null)
@@ -169,7 +198,7 @@ public class TestClass implements Serializable {
 	@Override
 	public String toString() {
 		return "TestClass [id=" + id + ", aadharCardNumber=" + aadharCardNumber + ", dob=" + dob + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address + "]";
 	}
 
 }
